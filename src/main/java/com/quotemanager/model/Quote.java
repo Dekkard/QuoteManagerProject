@@ -1,45 +1,95 @@
 package com.quotemanager.model;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.quotemanager.model.DTO.QuoteDTO;
 
-@Data
 @Entity
-@Builder
-@NoArgsConstructor
 public class Quote {
 	@Id
-	@GeneratedValue()
-	@Column(name = "id", unique = true, nullable = false)
-	private long id;
-	@Column(name = "stockId", nullable = false)
-	private String stockId;
-	@Column(name = "data", nullable = false)
-	private Date data;
-	@Column(name = "price", nullable = false)
-	private Double price;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private LocalDate date;
+	private BigDecimal price;
+	@ManyToOne
+	@JoinColumn(name = "stock_quote_id", referencedColumnName = "id")
+	private StockQuote stockQuote;
 
-	public Quote(Long id, String stockId, Date data, Double price) {
+	public Quote() {
+	}
+
+	public Quote(LocalDate date, BigDecimal price) {
 		super();
-		this.id = id;
-		this.stockId = stockId;
-		this.data = data;
+		this.date = date;
 		this.price = price;
 	}
 
-	public Quote(String stockId, Date data, Double price) {
+	public Quote(Long id, LocalDate date, BigDecimal price) {
 		super();
-//		this.id = id;
-		this.stockId = stockId;
-		this.data = data;
+		this.id = id;
+		this.date = date;
 		this.price = price;
+	}
+
+	public Quote(LocalDate date, BigDecimal price, StockQuote stockQuote) {
+		super();
+		this.date = date;
+		this.price = price;
+		this.stockQuote = stockQuote;
+	}
+	
+	public Quote(Long id, LocalDate date, BigDecimal price, StockQuote stockQuote) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.price = price;
+		this.stockQuote = stockQuote;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public StockQuote getStockQuote() {
+		return stockQuote;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public void setStockQuote(StockQuote stockQuote) {
+		this.stockQuote = stockQuote;
+	}
+
+	public static Quote DTOtoModel(QuoteDTO q) {
+		return new Quote(q.getId(), LocalDate.parse(q.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				new BigDecimal(q.getPrice()), StockQuote.DTOToModelRL(q.getStockQuoteDTO()));
+	}
+
+	public static Quote DTOtoModelRL(QuoteDTO q) {
+		return new Quote(q.getId(), LocalDate.parse(q.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				new BigDecimal(q.getPrice()));
 	}
 }

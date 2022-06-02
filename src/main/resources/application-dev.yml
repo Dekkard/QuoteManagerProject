@@ -3,11 +3,18 @@ server:
    port: 8081
 spring:
    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/bootdb
       username: root
       password: root
-      #driver-class-name: com.mysql.jdbc.Driver
    jpa:
       hibernate:
          ddl-auto: update
-      
+      defer-datasource-initialization: true
+      properties:
+         hibernate:
+            show_sql: true
+            format_sql: true
+   mvc:
+      pathmatch:
+         matching-strategy: ant_path_matcher

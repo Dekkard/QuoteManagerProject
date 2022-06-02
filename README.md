@@ -1,27 +1,18 @@
 # Projeto de Quote Manager
-Projeto de controle de Cota para Processo Seletivo da Inatel
+Projeto de controle de Cota
 
 ## Casos de Uso
+
 ### Caso 1
-Inserindo um quote cujo Stock existe:
+Inserindo uma cota cujo Stock existe:
 
 	{
-	  "id": "c01cede4-cd45-11eb-b8bc-0242ac130003",
-	  "stockId": "petr4",
-	  "quotes": [
-	    {
-	      "data": "2019-01-01",
-	      "price": "10"
-	    },
-	    {
-	      "data": "2019-01-02",
-	      "price": "11"
-	    },
-	    {
-	      "data": "2019-01-03",
-	      "price": "14"
-	    }
-	  ]
+		"stockId": "petr4",
+		"quotes": {
+			"2019-01-01": "10",
+			"2019-01-02": "11",
+			"2019-01-03": "14"
+		}
 	}
 	
 Status de resposta:
@@ -29,49 +20,53 @@ Status de resposta:
 	201: CREATED
 	
 ### Caso 2
-Inserindo um quote cujo Stock não exite:
+Inserindo uma cota cujo Stock não exite:
 
 	{
-	    "stockId": "petro",
-	    "id": "ca43",
-	    "quotes": [{
-	        "data": "2022-03-10",
-	        "price": 31.00
-	    }]
+		"stockId": "petr5",
+		"quotes": {
+			"2019-01-01": "10",
+			"2019-01-02": "11",
+			"2019-01-03": "14"
+		}
 	}
 	
-Status de resposta:
+Código de resposta:
 
-	404: Not Found
+	400: BAD_REQUEST
 
 ### Caso 3
-Busca pelo método get:
+Busca pelo método GET:
 	
 	http://localhost:8081/quote
 	
 Resposta:
 
 	[
-	  {
-	    "stockId": "petr4",
-	    "id": "c01cede4-cd45-11eb-b8bc-0242ac130003",
-	    "quotes": [
-	      {
-	        "data": "2019-01-01T00:00:00.000+00:00",
-	        "price": 10
-	      },
-	      {
-	        "data": "2019-01-02T00:00:00.000+00:00",
-	        "price": 11
-	      },
-	      {
-	        "data": "2019-01-03T00:00:00.000+00:00",
-	        "price": 14
-	      }
-	    ]
-	  }
+		{
+			"id": "a8ea9ed9-f184-4086-b72b-1fac64f70a19",
+			"stockId": "petr4",
+			"quotes": {
+				"2019-01-03": "14.00",
+				"2019-01-02": "11.00",
+				"2019-01-01": "10.00"
+			}
+		},
+		{
+			"id": "b933a3a8-850a-4245-968c-78d517fcdb44",
+			"stockId": "vale5",
+			"quotes": {
+				"2019-01-07": "22.00",
+				"2019-01-06": "21.00",
+				"2019-01-05": "20.00"
+			}
+		}
 	]
 
+Código:
+
+	200: OK
+	
 ### Caso 4
 Criando memória cache para os Stocks existentes:
 	
@@ -89,6 +84,10 @@ Resposta:
 	    "description": "Vale do Rio Doce PN"
 	  }
 	]
+
+Código:
+
+	200: OK
 	
 ### Caso 5
 Deletando a memória cache
@@ -97,4 +96,4 @@ Deletando a memória cache
 	
 Resposta:
 	
-	200 OK
+	202: ACCEPTED

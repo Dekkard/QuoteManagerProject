@@ -1,36 +1,79 @@
 package com.quotemanager.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-@Data
+import com.quotemanager.model.DTO.StockQuoteDTO;
+
 @Entity
-@Builder
-@NoArgsConstructor
 public class StockQuote {
 	@Id
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private String id;
-	@Column(name = "stockId", nullable = false)
 	private String stockId;
-	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-//	@Column(name = "quotes")
+	@OneToMany(mappedBy = "stockQuote")
 	private List<Quote> quotes;
+
+	public StockQuote() {
+	}
+
+	public StockQuote(String id, String stockId) {
+		super();
+		this.id = id;
+		this.stockId = stockId;
+	}
 
 	public StockQuote(String id, String stockId, List<Quote> quotes) {
 		super();
 		this.id = id;
 		this.stockId = stockId;
 		this.quotes = quotes;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getStockId() {
+		return stockId;
+	}
+
+	public List<Quote> getQuotes() {
+		return quotes;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setStockId(String stockId) {
+		this.stockId = stockId;
+	}
+
+	public void setQuotes(List<Quote> quotes) {
+		this.quotes = quotes;
+	}
+
+	public static StockQuote DTOToModel(StockQuoteDTO s) {
+		List<Quote> listQuote = s.getQuotes().entrySet().stream()
+				.map(e -> new Quote(LocalDate.parse(e.getKey(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+						new BigDecimal(e.getValue()), StockQuote.DTOToModelRL(s)))
+				.collect(Collectors.toList());
+		return new StockQuote(s.getId(), s.getStockId(), listQuote);
+	}
+
+	public static StockQuote DTOToModelRL(StockQuoteDTO s) {
+		return new StockQuote(s.getId(), s.getStockId());
 	}
 }
