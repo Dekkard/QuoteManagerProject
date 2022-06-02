@@ -94,6 +94,6 @@ Excluindo a memória cache:
 
 	http://localhost:8081/stockcache
 	
-Resposta de resposta:
+Código de resposta:
 	
 	202: ACCEPTED
