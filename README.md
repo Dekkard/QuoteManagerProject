@@ -15,7 +15,7 @@ Inserindo uma cota cujo Stock existe:
 		}
 	}
 	
-Status de resposta:
+Código de resposta:
 
 	201: CREATED
 	
@@ -63,7 +63,7 @@ Resposta:
 		}
 	]
 
-Código:
+Código de resposta:
 
 	200: OK
 	
@@ -85,15 +85,15 @@ Resposta:
 	  }
 	]
 
-Código:
+Código de resposta:
 
 	200: OK
 	
 ### Caso 5
-Excluindo a memória cache
+Excluindo a memória cache:
 
 	http://localhost:8081/stockcache
 	
-Resposta:
+Resposta de resposta:
 	
 	202: ACCEPTED
