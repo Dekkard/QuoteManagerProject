@@ -90,7 +90,7 @@ Código:
 	200: OK
 	
 ### Caso 5
-Deletando a memória cache
+Excluindo a memória cache
 
 	http://localhost:8081/stockcache
 	
