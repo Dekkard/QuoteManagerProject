@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+
+    quotemng:
+        image: dekkard/quote-manager:2.3
+        container_name: quotemng
+        environment:
+            HOST: 172.17.0.4
+            DB_HOST: 172.17.0.2
+            DB_PORT: 3306
+            ST_HOST: 172.17.0.3
+            ST_PORT: 8080
+        ports:
+            - "8081:8081"
+        #networks:
+        #    - bridge
+#        depends_on:
+#            - stockmng
+#            - mysql
+        
+#    mysql:
+#        image: mysql:latest
+#        container_name: mysql1
+#        environment:
+#            MYSQL_ROOT_PASSWORD: root
+#            MYSQL_DATABASE: bootdb
+#        ports:
+#            - "3306:3306"
+#            - "33060:33060"
+#        networks:
+#            - connection1
+#
+#    stockmng:
+#        image: lucasvilela/stock-manager
+#        container_name: stockmng1
+#        ports:
+#            - "8080:8080"
+#        networks:
+#            - connection1
+
+#networks:
+#    connection1:
+#        driver: bridge
+    

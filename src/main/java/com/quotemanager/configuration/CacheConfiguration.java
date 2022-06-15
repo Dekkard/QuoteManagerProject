@@ -1,4 +1,4 @@
-package com.quotemanager;
+package com.quotemanager.configuration;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

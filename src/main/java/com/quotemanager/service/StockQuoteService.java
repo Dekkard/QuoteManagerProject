@@ -1,4 +1,4 @@
-package com.quotemanager.repository;
+package com.quotemanager.service;
 
 import java.util.List;
 import java.util.Optional;

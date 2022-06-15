@@ -1,9 +1,8 @@
-package com.quotemanager.repository;
+package com.quotemanager.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -37,16 +36,14 @@ public class QuoteService implements ServiceModel<Quote, Long> {
 	@Override
 	public Optional<Quote> insert(Quote entity) {
 		try {
-			Optional<Quote> quote = Optional.of(em
-					.createQuery("SELECT q FROM Quote q WHERE date = ?1 and stockQuote = ?2", Quote.class)//
-					.setParameter(1, entity.getDate())//
-					.setParameter(2, entity.getStockQuote())//
-					.getSingleResult());
-			if(quote.isPresent()) {
+			Optional<Quote> quote = Optional
+					.of(em.createQuery("SELECT q FROM Quote q WHERE date = ?1 and stockQuote = ?2", Quote.class)//
+							.setParameter(1, entity.getDate())//
+							.setParameter(2, entity.getStockQuote())//
+							.getSingleResult());
+			if (quote.isPresent()) {
 				Quote q = quote.get();
-				q.setDate(entity.getDate());
 				q.setPrice(entity.getPrice());
-				q.setStockQuote(entity.getStockQuote());
 				return Optional.of(em.merge(q));
 			} else
 				return Optional.of(em.merge(entity));

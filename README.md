@@ -3,6 +3,25 @@ Projeto de controle de Cota
 
 ## Casos de Uso
 
+### Caso 0
+
+Buscando os Stock existentes na aplicação Stock Manager primeiro, demonstração do estado incial dos testes
+
+	]
+		{
+		    "id": "petr4",
+		    "description": "Petrobras PN"
+		},
+		{
+		    "id": "vale5",
+		    "description": "Vale do Rio Doce PN"
+		}
+	]
+	
+Código de resposta:
+
+	200: SUCCESS
+
 ### Caso 1
 Inserindo uma cota cujo Stock existe:
 

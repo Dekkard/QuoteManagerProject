@@ -1,14 +1,14 @@
 debug: true
 server:
    port: 8081
-   host: 192.168.1.4
+   host: ${HOST}
    error:
       include-stacktrace: never
       include-exception: false
 spring:
    datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/bootdb
+      url: jdbc:mysql://${DB_HOST}:${DB_PORT}/bootdb
       username: root
       password: root
    jpa:
@@ -23,5 +23,5 @@ spring:
       pathmatch:
          matching-strategy: ant_path_matcher
 coserver:
-   host: 127.0.0.1
-   port: 8084
+   host: ${ST_HOST}
+   port: ${ST_PORT}
