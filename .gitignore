@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 Schema.drawio
-APIDocs.docx
+compose.yml
 
 ### STS ###
 .apt_generated

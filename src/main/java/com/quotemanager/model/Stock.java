@@ -1,16 +1,22 @@
 package com.quotemanager.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Model class that describes the Stock, defined by the Stock Manager application.")
 /**
- * <b>Stock:<b> Model class that describes the Stock, imported from another
- * application
+ * <b>Stock:<b> Model class that describes the Stock, defined by the Stock
+ * Manager application.
  * <h6 style="margin-top:5px;margin-bottom:5px">Attributes</h6>
  * <ul>
- * <li><b>id:</b> Alfanumeric id, set by the Stock Manager application.</li>
- * <li><b>description:</b> Brief description of the Stock</li>
+ * <li><b>id:</b> Alfanumeric id that defines the stock.</li>
+ * <li><b>description:</b> Brief description of the Stock.</li>
  * </ul>
  */
 public class Stock {
+	@ApiModelProperty(notes = "Alfanumeric id that defines the stock.")
 	private String id;
+	@ApiModelProperty(notes = "Brief description of the Stock.")
 	private String description;
 
 	public Stock() {

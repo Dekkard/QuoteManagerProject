@@ -25,12 +25,12 @@ import io.swagger.annotations.ApiModelProperty;
  * </ul>
  */
 public class StockQuoteDTO {
-	@ApiModelProperty(value = "UUID generated id for each stock.")
+	@ApiModelProperty(notes = "UUID generated id for each stock.")
 	private String id;
-	@ApiModelProperty(value = "ID that references the id from Stock Manager application.")
+	@ApiModelProperty(notes = "ID that references the id from Stock Manager application.")
 //	@Pattern(regexp = "([a-z]{4,5})(\\d{1,2})")
 	private String stockId;
-	@ApiModelProperty(value = "A dictionary attribute containing the date and price of quotes of the Stock.")
+	@ApiModelProperty(notes = "A dictionary attribute containing the date and price of quotes of the Stock.")
 //	@MapCheck
 	private Map<String, String> quotes;
 

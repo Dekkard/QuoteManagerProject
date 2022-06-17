@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com</groupId>
 	<artifactId>quotemanager</artifactId>
-	<version>@project.version@</version>
+	<version>2.4</version>
 	<packaging>jar</packaging>
 	<name>QuoteManager</name>
 	<description>Projeto de controle de cotas</description>
@@ -97,18 +97,6 @@
 			<artifactId>json</artifactId>
 			<version>20220320</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
-		<!-- <dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.9.2</version>
-		</dependency>-->
-		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
-		<!-- <dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.9.2</version>
-		</dependency>-->
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
